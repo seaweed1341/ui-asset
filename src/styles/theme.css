@@ -1,0 +1,199 @@
+/* ==========================================================================
+   theme.css — [DS] UI Asset 1.0.2 (Figma) 디자인 토큰
+
+   Source
+   - Color      : Figma 변수 컬렉션 "Theme" (모드: Light) — Global/* 색상 변수 24개
+   - Semantic   : "Color & Style" 페이지의 Colors 가이드 중, 위 변수로 연결 가능한 역할만
+   - Typography : 로컬 텍스트 스타일 Heading/Heading1~4, Body/Body1~6
+
+   구조
+   1) Primitive  — Figma 변수 1:1. 헥스 값은 이 레이어에만 존재합니다.
+   2) Semantic   — 모두 Primitive를 var()로 참조합니다.
+   3) Typography — --font-* (family / weight / size / line-height / letter-spacing)
+
+   ※ Figma 파일에 Dark 모드가 없어 Light 값만 정의합니다.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Primitive — Figma "Theme" 변수 (Global/*)
+      이름 규칙: Global/<group>/m-<name>-<step>  →  --color-<name>-<step>
+   -------------------------------------------------------------------------- */
+:root {
+  /* Neutral — Global/neutral */
+  --color-neutral-10: #ffffff;
+  --color-neutral-20: #efefef;
+  --color-neutral-40: #bcbcbc;
+  --color-neutral-70: #737373;
+  --color-neutral-100: #000000;
+
+  /* Primary — Global/primary */
+  --color-primary-15: #dfedef;
+  --color-primary-70: #1d828f;
+  --color-primary-90: #10454c;
+
+  /* Success — Global/semantic/success */
+  --color-success-10: #f6fef9;
+  --color-success-20: #d1fadf;
+  --color-success-60: #12b76a;
+  --color-success-80-text: #027948;
+
+  /* Information — Global/semantic/infomation */
+  --color-info-10: #f6faff;
+  --color-info-20: #ddecff;
+  --color-info-60: #3887fd;
+  --color-info-80-text: #0e66e8;
+
+  /* Warning — Global/semantic/warning */
+  --color-warning-10: #fffcf5;
+  --color-warning-20: #feefc7;
+  --color-warning-60: #f79009;
+  --color-warning-80-text: #b54708;
+
+  /* Error — Global/semantic/error */
+  --color-error-10: #fffafa;
+  --color-error-20: #fee4e2;
+  --color-error-60: #f04438;
+  --color-error-80-text: #b32318;
+}
+
+/* --------------------------------------------------------------------------
+   2. Semantic — 역할 토큰 (Primitive 참조만)
+   -------------------------------------------------------------------------- */
+:root,
+:root[data-theme="light"] {
+  color-scheme: light;
+
+  /* Background */
+  --color-background-surface: var(--color-neutral-10);   /* bg-00: body, Card, Popup 내 배경 */
+
+  /* Text */
+  --color-text-sub: var(--color-neutral-70);              /* 서브 본문 텍스트 */
+  --color-text-on-color: var(--color-neutral-10);         /* 40~100 배경색 위 텍스트 */
+
+  /* Icon */
+  --color-icon-sub: var(--color-neutral-70);              /* 서브 텍스트와 함께 쓰는 아이콘 */
+  --color-icon-on-color: var(--color-neutral-10);         /* 40~100 배경색 위 아이콘 */
+
+  /* Button */
+  --color-button-primary: var(--color-primary-70);        /* Primary 기본 */
+  --color-button-primary-pressed: var(--color-primary-90);/* Primary Press */
+  --color-button-tertiary: var(--color-neutral-10);       /* Tertiary 기본 */
+
+  /* Border */
+  --color-border: var(--color-neutral-40);                /* 외곽선 */
+
+  /* Status — 변수 단계별 역할: 10 배경 / 20 연한 강조 / 60 기본 / 80 텍스트 */
+  --color-status-success-bg: var(--color-success-10);
+  --color-status-success-subtle: var(--color-success-20);
+  --color-status-success: var(--color-success-60);
+  --color-status-success-text: var(--color-success-80-text);
+
+  --color-status-info-bg: var(--color-info-10);
+  --color-status-info-subtle: var(--color-info-20);
+  --color-status-info: var(--color-info-60);
+  --color-status-info-text: var(--color-info-80-text);
+
+  --color-status-warning-bg: var(--color-warning-10);
+  --color-status-warning-subtle: var(--color-warning-20);
+  --color-status-warning: var(--color-warning-60);
+  --color-status-warning-text: var(--color-warning-80-text);
+
+  --color-status-error-bg: var(--color-error-10);
+  --color-status-error-subtle: var(--color-error-20);
+  --color-status-error: var(--color-error-60);
+  --color-status-error-text: var(--color-error-80-text);
+}
+
+/* --------------------------------------------------------------------------
+   3. Typography — Figma 텍스트 스타일
+   - 크기는 rem (1rem = 16px), line-height는 배수, letter-spacing은 em
+   - Heading: Noto Sans Bold, 130% / Body1~4: Medium, 140% / Body5~6: Regular, 140%
+   -------------------------------------------------------------------------- */
+:root {
+  /* Family */
+  --font-family-sans: "Noto Sans", "Noto Sans KR", -apple-system, BlinkMacSystemFont,
+    system-ui, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+
+  /* Weight */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+
+  /* Line height */
+  --font-line-height-heading: 1.3;
+  --font-line-height-body: 1.4;
+
+  /* Letter spacing */
+  --font-letter-spacing-none: 0em;
+
+  /* Heading/Heading1 — 40px */
+  --font-size-heading-1: 2.5rem;
+  --font-weight-heading-1: var(--font-weight-bold);
+  --font-line-height-heading-1: var(--font-line-height-heading);
+  --font-letter-spacing-heading-1: var(--font-letter-spacing-none);
+
+  /* Heading/Heading2 — 32px */
+  --font-size-heading-2: 2rem;
+  --font-weight-heading-2: var(--font-weight-bold);
+  --font-line-height-heading-2: var(--font-line-height-heading);
+  --font-letter-spacing-heading-2: var(--font-letter-spacing-none);
+
+  /* Heading/Heading3 — 28px */
+  --font-size-heading-3: 1.75rem;
+  --font-weight-heading-3: var(--font-weight-bold);
+  --font-line-height-heading-3: var(--font-line-height-heading);
+  --font-letter-spacing-heading-3: var(--font-letter-spacing-none);
+
+  /* Heading/Heading4 — 24px */
+  --font-size-heading-4: 1.5rem;
+  --font-weight-heading-4: var(--font-weight-bold);
+  --font-line-height-heading-4: var(--font-line-height-heading);
+  --font-letter-spacing-heading-4: var(--font-letter-spacing-none);
+
+  /* Body/Body1 — 23px */
+  --font-size-body-1: 1.4375rem;
+  --font-weight-body-1: var(--font-weight-medium);
+  --font-line-height-body-1: var(--font-line-height-body);
+  --font-letter-spacing-body-1: var(--font-letter-spacing-none);
+
+  /* Body/Body2 — 18px */
+  --font-size-body-2: 1.125rem;
+  --font-weight-body-2: var(--font-weight-medium);
+  --font-line-height-body-2: var(--font-line-height-body);
+  --font-letter-spacing-body-2: var(--font-letter-spacing-none);
+
+  /* Body/Body3 — 15px */
+  --font-size-body-3: 0.9375rem;
+  --font-weight-body-3: var(--font-weight-medium);
+  --font-line-height-body-3: var(--font-line-height-body);
+  --font-letter-spacing-body-3: var(--font-letter-spacing-none);
+
+  /* Body/Body4 — 12px */
+  --font-size-body-4: 0.75rem;
+  --font-weight-body-4: var(--font-weight-medium);
+  --font-line-height-body-4: var(--font-line-height-body);
+  --font-letter-spacing-body-4: var(--font-letter-spacing-none);
+
+  /* Body/Body5 — 10px */
+  --font-size-body-5: 0.625rem;
+  --font-weight-body-5: var(--font-weight-regular);
+  --font-line-height-body-5: var(--font-line-height-body);
+  --font-letter-spacing-body-5: var(--font-letter-spacing-none);
+
+  /* Body/Body6 — 8px */
+  --font-size-body-6: 0.5rem;
+  --font-weight-body-6: var(--font-weight-regular);
+  --font-line-height-body-6: var(--font-line-height-body);
+  --font-letter-spacing-body-6: var(--font-letter-spacing-none);
+}
+
+/* 기본 적용 */
+body {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-body-3);
+  font-weight: var(--font-weight-body-3);
+  line-height: var(--font-line-height-body-3);
+  letter-spacing: var(--font-letter-spacing-body-3);
+  color: var(--color-neutral-100);
+  background-color: var(--color-background-surface);
+}
