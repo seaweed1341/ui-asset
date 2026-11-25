@@ -3,6 +3,7 @@ import { cn } from '../lib/cn';
 import { ComponentSection, docs } from './ComponentDocs';
 import { Colors, Typography } from './Foundations';
 import { Hero } from './Hero';
+import { PatternCompare, PatternDashboard, PatternDesktop, PatternPopup, PatternWebApp, patternNav } from './PatternDocs';
 
 const nav = [
   { group: '시작', items: [{ id: 'overview', label: '개요' }] },
@@ -14,6 +15,7 @@ const nav = [
     ],
   },
   { group: '컴포넌트', items: docs.map((d) => ({ id: d.id, label: d.name })) },
+  { group: '패턴', items: patternNav },
 ];
 const ids = nav.flatMap((g) => g.items.map((i) => i.id));
 
@@ -96,6 +98,11 @@ export function GuidePage() {
           {docs.map((d) => (
             <ComponentSection key={d.id} doc={d} />
           ))}
+          <PatternCompare />
+          <PatternWebApp />
+          <PatternDashboard />
+          <PatternDesktop />
+          <PatternPopup />
           <footer className="border-t border-neutral-100 py-10 text-body-4 text-neutral-70">
             원본: Figma [DS] UI Asset 1.0.2. 토큰은 src/styles/theme.css, 컴포넌트는 src/components에 있습니다.
           </footer>

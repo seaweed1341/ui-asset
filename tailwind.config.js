@@ -78,6 +78,10 @@ module.exports = {
         border: {
           DEFAULT: v('color-border'),
         },
+        divider: {
+          table: v('color-divider-table'),
+        },
+        dimmer: v('color-dimmer'),
         status: {
           success: {
             DEFAULT: v('color-status-success'),

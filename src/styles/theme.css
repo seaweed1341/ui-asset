@@ -81,6 +81,11 @@
 
   /* Border */
   --color-border: var(--color-neutral-40);                /* 외곽선 */
+  /* 표 셀 구분선: 화면설계서의 #bcbcbc @50% (= neutral-40 반투명) */
+  --color-divider-table: color-mix(in srgb, var(--color-neutral-40) 50%, transparent);
+
+  /* Overlay — 팝업 뒤 dim */
+  --color-dimmer: color-mix(in srgb, var(--color-neutral-100) 50%, transparent);
 
   /* Status — 변수 단계별 역할: 10 배경 / 20 연한 강조 / 60 기본 / 80 텍스트 */
   --color-status-success-bg: var(--color-success-10);
