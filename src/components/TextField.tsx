@@ -80,6 +80,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(function T
     className,
     id,
     placeholder = 'placeholder',
+    readOnly,
     ...rest
   },
   ref,
@@ -118,7 +119,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(function T
           id={inputId}
           type={type === 'password' && !reveal ? 'password' : 'text'}
           disabled={disabled}
-          readOnly={plain || rest.readOnly}
+          readOnly={plain || readOnly}
           value={current}
           maxLength={maxLength}
           placeholder={placeholder}

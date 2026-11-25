@@ -1,0 +1,43 @@
+/* Figma: `scroll bar` (orientation vertical|horizontal · size 25|50|75% · reverse)
+   두께 10 = 트랙 2px + 양옆 여백 4px, 양 끝 여백 6px
+   트랙 neutral-20 (r2) · 썸 neutral-70 50% (r2) — 썸 길이/위치는 브라우저가 스크롤 양에 맞춰 계산 */
+.ds-scroll-area {
+  --ds-scroll-thumb: color-mix(in srgb, var(--color-neutral-70) 50%, transparent);
+  --ds-scroll-track: var(--color-neutral-20);
+}
+
+.ds-scroll-area::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  background: transparent;
+}
+
+.ds-scroll-area::-webkit-scrollbar-track:vertical {
+  margin: 6px 0;
+  background: linear-gradient(var(--ds-scroll-track), var(--ds-scroll-track)) center / 2px 100% no-repeat;
+}
+
+.ds-scroll-area::-webkit-scrollbar-track:horizontal {
+  margin: 0 6px;
+  background: linear-gradient(var(--ds-scroll-track), var(--ds-scroll-track)) center / 100% 2px no-repeat;
+}
+
+.ds-scroll-area::-webkit-scrollbar-thumb {
+  background-color: var(--ds-scroll-thumb);
+  background-clip: padding-box;
+  border: 4px solid transparent;
+  border-radius: 6px;
+}
+
+.ds-scroll-area::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Firefox 등 ::-webkit-scrollbar 미지원 브라우저: 표준 속성으로 근사
+   (Chrome 121+는 scrollbar-color를 지정하면 위의 webkit 스타일을 무시하므로 분기) */
+@supports not selector(::-webkit-scrollbar) {
+  .ds-scroll-area {
+    scrollbar-width: thin;
+    scrollbar-color: var(--ds-scroll-thumb) var(--ds-scroll-track);
+  }
+}

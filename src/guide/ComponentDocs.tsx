@@ -343,7 +343,7 @@ export function ComponentSection({ doc }: { doc: ComponentDoc }) {
       <p className="mb-6 max-w-2xl text-body-3 text-neutral-70">{doc.description}</p>
 
       <div className="ring-1 ring-inset ring-neutral-40">
-        <div className="flex flex-col gap-6 bg-neutral-10 p-6">
+        <div className="flex flex-col gap-6 overflow-x-auto bg-neutral-10 p-6">
           <Preview />
         </div>
         <CodeBlock code={doc.code} />

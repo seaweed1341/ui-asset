@@ -1,9 +1,31 @@
 import { useEffect, useState } from 'react';
 import { cn } from '../lib/cn';
-import { ComponentSection, docs } from './ComponentDocs';
+import { ComponentSection, docs, type ComponentDoc } from './ComponentDocs';
+import { chartDocs } from './docs/chart';
+import { coreDocs } from './docs/core';
+import { dateDocs } from './docs/date';
+import { displayDocs } from './docs/display';
+import { formDocs } from './docs/form';
+import { navigationDocs } from './docs/navigation';
+import { overlayDocs } from './docs/overlay';
 import { Colors, Typography } from './Foundations';
 import { Hero } from './Hero';
 import { PatternCompare, PatternDashboard, PatternDesktop, PatternPopup, PatternWebApp, patternNav } from './PatternDocs';
+
+/** 컴포넌트 문서 묶음 (DS Components 페이지의 분류를 따름) */
+const componentGroups: { group: string; docs: ComponentDoc[] }[] = [
+  { group: '기본 컨트롤', docs },
+  { group: '폼 · 입력', docs: formDocs },
+  { group: '날짜 · 일정', docs: dateDocs },
+  { group: '내비게이션 · 구조', docs: navigationDocs },
+  { group: '데이터 · 목록', docs: coreDocs.filter((d) => ['data-table', 'pagination', 'side-bar'].includes(d.id)) },
+  { group: '카드 · 미디어', docs: displayDocs },
+  { group: '차트 · 진행률', docs: chartDocs },
+  {
+    group: '오버레이 · 피드백',
+    docs: [...coreDocs.filter((d) => ['popup', 'tooltip', 'feedback'].includes(d.id)), ...overlayDocs],
+  },
+];
 
 const nav = [
   { group: '시작', items: [{ id: 'overview', label: '개요' }] },
@@ -14,7 +36,7 @@ const nav = [
       { id: 'typography', label: 'Typography' },
     ],
   },
-  { group: '컴포넌트', items: docs.map((d) => ({ id: d.id, label: d.name })) },
+  ...componentGroups.map((g) => ({ group: g.group, items: g.docs.map((d) => ({ id: d.id, label: d.name })) })),
   { group: '패턴', items: patternNav },
 ];
 const ids = nav.flatMap((g) => g.items.map((i) => i.id));
@@ -70,9 +92,10 @@ export function GuidePage() {
                     <li key={i.id}>
                       <a
                         href={`#${i.id}`}
+                        title={i.label}
                         aria-current={active === i.id ? 'location' : undefined}
                         className={cn(
-                          'block whitespace-nowrap px-2 py-1.5 text-body-4 transition-colors',
+                          'block whitespace-nowrap px-2 py-1.5 text-body-4 transition-colors md:truncate',
                           'focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-primary-70',
                           active === i.id
                             ? 'bg-neutral-10 font-bold text-neutral-100 md:shadow-[inset_3px_0_0_var(--color-primary-70)]'
@@ -95,8 +118,13 @@ export function GuidePage() {
           <Hero />
           <Colors />
           <Typography />
-          {docs.map((d) => (
-            <ComponentSection key={d.id} doc={d} />
+          {componentGroups.map((g) => (
+            <div key={g.group}>
+              <h2 className="border-t-4 border-neutral-100 pt-10 text-heading-2 text-neutral-100">{g.group}</h2>
+              {g.docs.map((d) => (
+                <ComponentSection key={d.id} doc={d} />
+              ))}
+            </div>
           ))}
           <PatternCompare />
           <PatternWebApp />
